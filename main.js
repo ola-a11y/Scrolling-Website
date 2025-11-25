@@ -19,13 +19,12 @@ function updateParallax() {
     boat.style.transform = `translateY(${value * 0.6}px) translateX(${value * 4}px)`;
     mout3.style.transform = `translateY(${value * 0.3}px)`;
 
-
-
-    let textTranslateY = -350 + (value * 1.5);
-    let textFontSize = 30 + (value * 0.5); 
+    let moveDown = value * 1.5; 
+    let newSize = 30 + (value * 0.5);
     
-    Website.style.transform = `translate(-50%, -50%) translateY(${textTranslateY}px)`;
-    Website.style.fontSize = textFontSize + 'px';
+    Website.style.transform = `translateX(-50%) translateY(${moveDown}px)`;
+    Website.style.fontSize = newSize + 'px';
+
     
     if (value >= 127) {
         document.querySelector('.main').style.background = 'linear-gradient(#376281,#10001f)';
@@ -46,6 +45,14 @@ window.addEventListener('scroll', function() {
 
 updateParallax();
 
+
+function toggleMenu() {
+    const menu = document.querySelector('.navigation');
+    const toggle = document.querySelector('.toggle');
+
+    menu.classList.toggle('active');
+    toggle.classList.toggle('active')
+}
 
 
 

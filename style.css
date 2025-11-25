@@ -1,4 +1,4 @@
-*{
+ /* *{
     margin: 0;
     padding: 0;
 }
@@ -17,6 +17,7 @@ body {
     min-height: 100vh; 
     color: #f0f0f0;
   }
+
 header{
     display: flex;
     justify-content: space-between;
@@ -42,6 +43,159 @@ header ul li a{
 header ul li a:hover, .active{
     background-color: #fff;
     color: #200016;
+}
+.toggle {
+    display: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: url('https://cdn-icons-png.flaticon.com/512/56/56763.png'); 
+    background-size: 30px;
+    filter: invert(1); 
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* ضفت دي عشان المقاسات تظبط */
+}
+a {
+    text-decoration: none;
+    color: #fff;  
+}
+li {
+    list-style: none;
+}
+body {
+    background: linear-gradient(#200016, #10001f);
+    height: 100vh; 
+    font-family: system-ui;
+    overflow-x: hidden;
+    min-height: 100vh; 
+    color: #f0f0f0;
+}
+
+/* --- تنسيق الهيدر (ديسكتوب) - زي ما أنتي عاملاه --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px; /* دي اللي إنتي عايزاها */
+    position: relative;
+    z-index: 1000;
+}
+header .logo {
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+header ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header ul li {
+    margin-right: 30px;
+}
+/* شكل الكبسولة اللي إنتي عايزاه */
+header ul li a {
+    padding: 6px 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+header ul li a:hover, header ul li a.active {
+    background-color: #fff;
+    color: #200016;
+}
+
+/* زرار التوجل */
+.toggle {
+    display: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: url('https://cdn-icons-png.flaticon.com/512/56/56763.png'); 
+    background-size: 30px;
+    filter: invert(1); 
+    z-index: 1001; /* لازم يكون فوق القائمة */
+}
+.toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: 0.4s; 
+}
+@media (max-width: 768px) {
+
+    /* زرار المنيو */
+    .toggle {
+        display: block !important;
+        background: none !important;
+        border: none;
+        cursor: pointer;
+        z-index: 10001;
+        filter: none !important;
+    }
+
+    /* لون الأيقونات */
+    .toggle i {
+        color: #fff !important;
+        font-size: 30px;
+        transition: 0.3s ease;
+    }
+
+    /* إخفاء/إظهار الأيقونات */
+    .toggle .fa-bars { display: block; }
+    .toggle .fa-xmark { display: none; }
+
+    .toggle.active .fa-bars { display: none; }
+    .toggle.active .fa-xmark { display: block; }
+
+    /* القائمة — مع أنيميشن */
+    .navigation {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #200016;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+
+        opacity: 0;
+        transform: translateY(-15px);
+        visibility: hidden;
+        transition: 0.4s ease;
+        z-index: 10000;
+    }
+
+    .navigation.active {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+
+    /* عناصر القائمة */
+    header ul li {
+        margin: 12px 0;
+        margin-right: 0;
+    }
+
+    .navigation li a {
+        font-size: 20px;
+        padding: 10px 25px;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    /* نفس كبسولة الديسكتوب */
+    .navigation li a:hover,
+    .navigation li a.active {
+        background: #fff;
+        color: #200016;
+    }
 }
 .main{
     position: relative;
@@ -97,7 +251,8 @@ header ul li a:hover, .active{
     top: 50%;
     left: 50%;
     font-size: 30px; 
-    transform: translate(-50%, -50%) translateY(-350px);
+    transform: translateX(-50%); 
+    top: 200px;
     z-index: 2; 
     width: 100%;
     text-align: center;
@@ -114,7 +269,12 @@ header ul li a:hover, .active{
 .contant{
     margin: 20px;
 }
+@media (max-width: 768px) {
 
+    .contant p:nth-of-type(n+3) {
+        display: none;
+    }
+}
 
 ::-webkit-scrollbar {
     width: 20px;
